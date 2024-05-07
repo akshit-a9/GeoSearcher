@@ -1,0 +1,60 @@
+h1{
+    text-align: center;
+    color: rgb(150, 39, 39);
+}
+#pic{
+    display: block;
+    width: 250px; 
+    height: 250px; 
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+}
+a:link{
+    color: rgb(155, 47, 47);
+    text-decoration: none;
+    font-size: larger;
+    /* background-color:#95F08A; */
+}
+a:visited{
+    color: #F0E58A;
+    text-decoration: none;
+    font-size: larger;
+    /* background-color: #8A95F0; */
+}
+#btn{
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    background-color: #e981be;
+    color: black;
+    padding: 15px;
+    font-size: 25px;
+    border-radius: 15px;   
+}
+#table1{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+#table1, #table1 th, #table1 tr,#table1 td{
+    align-items: center;
+    border: 1px #814e1d;
+    border-collapse: collapse;
+    border-style: double;
+    width: 500px;
+    border-width: 5px;
+}
+#table2, #table2 th, #table2 tr, #table2 td{
+    background-color: #c97129;
+    border: 1px #96430c;
+    border-style:groove;
+    border-width: 3px;
+    border-collapse: collapse;
+}
+#table1 td{
+    text-align: center;
+    border-collapse: collapse;
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Place Map</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, white, rgba(110, 42, 0, 0.941));
+      text-align: center;
+    }
+
+    h1 {
+      cursor: pointer;
+      color: rgb(66, 6, 134);
+      font-size: 50px;
+    }
+
+    h3 {
+        color: rgb(115, 53, 185);
+        text-align: center;
+        font-size: 30px;
+    }
+
+    h4 {
+        color: rgb(218, 167, 218);
+        cursor: pointer;
+    }
+
+    h2 {
+        color: rgb(94, 26, 94);
+        cursor: pointer;
+    }
+
+    #frm{
+      display: block;
+      float: left;
+      margin-top: 15%;
+      margin-left: 15%;
+    }
+
+    #gf{
+      display: block;
+      float: right;
+      width: 35%;
+      height: 35%;
+      border-radius: 15px;
+    }
+
+    #map {
+      height: 800px;
+      width: 100%;
+    }
+
+    #place {
+      border-radius: 50px;
+      padding: 25px;
+      width: 400px;
+      margin-bottom: 10px;
+      font-size: 18px;
+      border-color: rgb(142, 60, 219);
+    }
+
+    #search-button {
+      border-radius: 50%;
+      width: 69px;
+      height: 69px;
+      font-weight: bold;
+      font-size: 24px;
+      background-color: white;
+      border-color: rgb(166, 50, 219);
+    }
+    #search-button:hover{
+      background-color: rgb(166, 50, 219);
+      color: white;
+    }
+
+    #google-maps-button {
+    border-radius: 50px;
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: white;
+    border-color: brown;
+    cursor: pointer;
+    }
+    #google-maps-button:hover{
+      background-color: brown;
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Welcome to Geo Searcher!</h1>
+  <h3>Lets get you started - Just put the name of the place you want a map of in the search box below!</h3>
+
+<br>
+<br>
+  <img src="e_r_p(1).jpg" id="gf">
+  <form onsubmit="return showMap()" id="frm">
+    <input type="text" id="place" required placeholder="Enter a place">
+    <button type="submit" id="search-button">Go</button>
+  </form>
+  <div id="map"></div>
+
+  <script>
+    function showMap() {
+      var place = document.getElementById("place").value;
+      var mapContainer = document.getElementById("map");
+      
+      // Create a new map object
+      var map = new google.maps.Map(mapContainer, {
+        center: {lat: 0, lng: 0}, // Default to center of the world
+        zoom: 10 // Default zoom level
+      });
+      
+      // Geocode the place input
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ address: place }, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+          // Set the map center to the geocoded location
+          map.setCenter(results[0].geometry.location);
+          
+          // Create a marker for the geocoded location
+          var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+
+      return false; // Prevent form submission
+    }
+  </script>
+  
+  <!-- Include the Google Maps API script -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZyF_W3ntuUn7-zw-8hCfGoXN1qZfIl7Y"></script>
+
+  <h2>Incase you are unable to use the API, here's an alternate!</h2>
+  <button id="google-maps-button" onclick="openGoogleMaps()">Open in Google Maps</button>
+
+<script>
+  function openGoogleMaps() {
+    var place = document.getElementById("place").value;
+    var googleMapsLink = "https://www.google.com/maps/place/" + encodeURIComponent(place);
+    window.open(googleMapsLink, "_blank");
+  }
+</script>
+
+<br>
+<br>
+<h4 onclick="location.href='credits.html'">Made with <3 by Akshit Sharma </h4>
+</body>
+</html>
